@@ -1,0 +1,62 @@
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+.container{
+	width: 100%;
+	max-width: 1200px;
+	margin: 0px auto;
+	height: 10%;
+}
+.row{
+	&:before{
+		content: " ";
+		display: table;
+	}
+	&:after{
+		@extend .row:before;
+		clear: both;
+	}
+}
+[class*="col-"]{
+	min-height: 7px;
+	padding: 12px;
+	float: left;
+}
+@function anchoColumna($columnas) {
+	@return percentage(($columnas/12));
+}
+@for $numColumna from 1 through 12{
+	.col-#{$numColumna}{
+		width: anchoColumna($numColumna);
+	}
+}
+
+@function margenColumna($columnas) {
+	@return percentage(($columnas/12));
+}
+@for $marColumna from 1 through 12{
+	.col-offset-#{$marColumna}{
+		margin-left: margenColumna($marColumna);
+	}
+}
+@function flexColumna($flexColumna) {
+	@return percentage(($flexColumna/4));
+}
+@for $flexColumna from 1 to 4{
+	.col-flex-#{$flexColumna}{
+		margin-top: flexColumna($flexColumna);
+	}
+}
+
+header{
+	text-align: center;
+	.titulo{
+		span{font-weight: 600;
+		}
+	}
+	.diseño{
+
+	}
+}
